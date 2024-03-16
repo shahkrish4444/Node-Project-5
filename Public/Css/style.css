@@ -1,0 +1,70 @@
+.ms-300 {
+    margin-left: 300px !important;
+}
+
+.w-300 {
+    width: 300px !important;
+}
+.w-100{
+ width: 100% !important;
+}
+
+.border-my {
+    border-bottom: 2px solid #45586b;
+}
+
+.border-e {
+    border-right: 2px solid #45586b;
+}
+
+body {
+    background-color: #4ba752;
+}
+.bg-dark{
+    background-color: #0d2136 !important;
+}
+textarea{
+    max-height: 100px !important;
+}
+.mt-80{
+    margin-top: 80px !important;
+}
+
+.btns {
+    width: 6.5em;
+    height: 2.3em;
+    background: #45586b;
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+   }
+   
+   button:hover {
+    color: #45586b;
+   }
+   
+   button:after {
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+   }
+   
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+   

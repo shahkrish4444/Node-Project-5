@@ -1,0 +1,60 @@
+<%- include('../Partials/Header.ejs') -%>
+    <div class="d-flex justify-content-center ms-300 mt-80">
+        <div class="p-4 rounded-4 mx-4 me-4 w-100 overflow-scroll">
+            <table class="table table-bordered table-light table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center">S.R. No.</th>
+                        <th class="text-center">Movie Poster</th>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Release Date</th>
+                        <th class="text-center">Genres</th>
+                        <th class="text-center">Rating</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(movie && movie.length> 0){ %>
+                        <% movie.forEach(function(user, index) { %>
+                            <tr>
+                                <td class="text-center">
+                                    <%= index + 1 %>
+                                </td>
+                                <td class="text-center"><img src="<%= user.movieImage %>" class="rounded-3" alt=""
+                                        width="100px" height="60px" /></td>
+                                <td>
+                                    <%= user.title %>
+                                </td>
+                                <td>
+                                    <%= user.description %>
+                                </td>
+                                <td>
+                                    <%= user.releaseDate ? user.releaseDate.toLocaleDateString('en-US', {
+                                        year: 'numeric' , month: 'long' , day: 'numeric' }) : 'N/A' %>
+                                </td>
+                                <td>
+                                    <%= user.genres %>
+                                </td>
+                                <td>
+                                    <%= user.rating %>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-warning me-1" href="/edit/<%= user._id %>">Edit</a>
+                                        <a class="btn btn-danger ms-1" href="/delete/<%= user._id %>">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="8" class="text-center">No data available</td>
+                                    </tr>
+                                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%- include('../Partials/Footer.ejs') -%>

@@ -1,0 +1,59 @@
+<%- include('../Partials/Header.ejs') -%>
+    <div class="ms-300 mt-80">
+        <div class="m-4 w-300">
+            <div class="bg-light px-3 py-4 rounded-4 d-flex">
+                <form id="editMovieForm" action="" method="post" enctype="multipart/form-data" class="form">
+                    <h4 class="text-dark mb-4">EDIT MOVIE</h4>
+                    <p id="error" class="mb-4 text-center text-danger"></p>
+                    <input type="text" id="title" placeholder="Title" class="form-control mb-3"
+                        value="<%= movie.title %>" name="title">
+                    <textarea name="dsc" id="dsc" class="form-control mb-3"
+                        placeholder="Description"><%= movie.description %></textarea>
+                    <div class="mb-3">
+                        <label for="" class="me-3 text-dark mb-2">Release Date : </label>
+                        <input id="date" type="date" class="form-control" name="releaseDate"
+                            value="<%=  movie.releaseDate.toISOString().split('T')[0]  %>">
+                    </div>
+                    <select name="genres" id="genres" class="form-select mb-3">
+                        <option value="">Select Genres</option>
+                        <% ['Horror', 'Western' , 'Drama' , 'Action' , 'Adventure' , 'Comedy' , 'Thriller' , 'Narrative'
+                            , 'Historical Fiction' , 'Fairy Tale' , 'Essay' , 'Biography' , 'Anime'
+                            ].forEach(function(genre) { %>
+                            <option value="<%= genre %>" <%=movie.genres===genre ? 'selected' : '' %>><%= genre %>
+                            </option>
+                            <% }); %>
+                    </select>
+                    <select name="rating" id="rating" class="form-select mb-3">
+                        <option value="">Select Rating</option>
+                        <% for(let i=1; i <=10; i++) { let stars='⭐' .repeat(i); %>
+                            <option value="<%= stars %>" <%=movie.rating===stars ? 'selected' : '' %>><%= i %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <label class="form-label text-dark d-block" for="">Movie Poster : </label>
+                    <img id="movieImagePreview" src="/<%= movie.movieImage %>" alt="" width="100px" height="60px"
+                        class="rounded-3 mb-3">
+                    <input type="file" class="form-control mb-3" id="movieImageInput" name="movieImage">
+                    <button class="btns mt-3" type="submit">UPDATE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('editMovieForm').onsubmit = function (event) {
+            var title = document.getElementById('title').value;
+            var dsc = document.getElementById('dsc').value;
+            var date = document.getElementById('date').value;
+            var genres = document.getElementById('genres').value;
+            var rating = document.getElementById('rating').value;
+
+            if (!title || !dsc || !date || !genres || !rating) {
+                document.getElementById('error').textContent = 'Please fill out all fields.';
+                event.preventDefault();
+            } else {
+                document.getElementById('error').textContent = '';
+            }
+
+        };
+    </script>
+    <%- include('../Partials/Footer.ejs') -%>
